@@ -7,29 +7,22 @@ post '/surveys' do
   survey_title = params[:title]
   all_questions = params[:questions]
 
-  puts survey_title
+  survey = Survey.create(title: params[:title], creator_id: current_user.id)
 
-  all_questions.each do |key, value|
-    question = value[:question]
-    all_options = value[:options]
+  all_questions.each_value do |value|
+    question_text = value[:question]
+    all_choices = value[:options]
 
-    puts "QUESTION #{question}"
+    question = Question.create(content: question_text, survey_id: survey.id)
 
-    all_options.each do |key, value|
-      puts "OPTION #{value}"
+    all_choices.each_value do |value|
+      Choice.create(content: value, question_id: question.id)
     end
   end
 
-  redirect "/users/:id/surveys"
+  redirect "/users/#{current_user.id}/surveys"
 end
 
-get '/surveys/take/:id' do
-  erb :"surveys/questions/index"
-end
-
-post '/surveys/take/:id' do
-  puts params
-end
 
 get '/surveys/new' do
   erb :"surveys/new"
