@@ -1,5 +1,5 @@
 get '/users/new' do
-  # @user = User.new
+  @user = User.new
   erb :"users/new"
 end
 

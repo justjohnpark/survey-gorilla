@@ -1,10 +1,9 @@
 get '/surveys' do
-  # @surveys = Survey.all
+  @surveys = Survey.all
   erb :"surveys/index"
 end
 
-# post '/surveys' do
-post '/test' do
+post '/surveys' do
   survey_title = params[:title]
   all_questions = params[:questions]
 
@@ -21,7 +20,7 @@ post '/test' do
     end
   end
 
-  # erb :"surveys/new"
+  redirect "/users/:id/surveys"
 end
 
 get '/john' do
