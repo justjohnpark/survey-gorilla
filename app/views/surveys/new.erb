@@ -1,0 +1,26 @@
+<h1>Create a survey</h1>
+
+<form action='/surveys' method='post' id="new-survey">
+
+
+  <input name='title' type='text' placeholder='title'>
+
+  <br>
+  <br>
+
+  <ul id="added-questions">
+    <li>
+      <input name='questions[0][question]' placeholder='question'>
+      <input class='option' name='questions[0][options][0]' placeholder='option'>
+      <input class='option' name='questions[0][options][1]' placeholder='option'>
+      <button class='add-option'>add option</button>
+      <button class='delete-question'>delete question</button>
+    </li>
+  </ul>
+
+  <button id="new-question">add question</button>
+
+  <br>
+  <input type='submit'>
+</form>
+
