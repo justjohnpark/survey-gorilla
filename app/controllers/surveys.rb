@@ -21,10 +21,15 @@ post '/test' do
     end
   end
 
-  puts 'hi'
-
-
   # erb :"surveys/new"
+end
+
+get '/john' do
+  erb :"surveys/questions/index"
+end
+
+post '/john' do
+  puts params
 end
 
 get '/surveys/new' do
