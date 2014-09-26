@@ -10,6 +10,14 @@ $(document).ready(function() {
     var question_index = lastQuestionIndex();
     $("#added-questions").append( buildQuestion(question_index + 1) )
   })
+  $("#added-questions").on("click", ".delete-question", function() {
+    event.preventDefault();
+    if ( $("#added-questions li:last").index() === 0 ) {
+      return null
+    } else {
+      $( $(this).parent() ).remove();
+    }
+  })
 });
 
 function buildQuestion(index) {
@@ -18,6 +26,7 @@ function buildQuestion(index) {
             <input class='option' name='questions[" + index + "][options][0]' placeholder='option'> \
             <input class='option' name='questions[" + index + "][options][1]' placeholder='option'> \
             <button class='add-option'>add option</button> \
+            <button class='delete-question'>delete question</button> \
           </li>"
 }
 
@@ -26,7 +35,7 @@ function buildOption(option_index, question_index) {
 }
 
 function lastQuestionIndex() {
-  return $("#added-questions li").last().index()
+  return parseInt($("#added-questions li:last input:first").attr('name').split('[')[1])
 }
 
 function lastOptionIndex(button) {
