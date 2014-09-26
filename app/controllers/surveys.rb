@@ -3,7 +3,27 @@ get '/surveys' do
   erb :"surveys/index"
 end
 
-post '/surveys' do
+# post '/surveys' do
+post '/test' do
+  survey_title = params[:title]
+  all_questions = params[:questions]
+
+  puts survey_title
+
+  all_questions.each do |key, value|
+    question = value[:question]
+    all_options = value[:options]
+
+    puts "QUESTION #{question}"
+
+    all_options.each do |key, value|
+      puts "OPTION #{value}"
+    end
+  end
+
+  puts 'hi'
+
+
   # erb :"surveys/new"
 end
 
