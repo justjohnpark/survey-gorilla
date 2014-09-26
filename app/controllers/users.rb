@@ -12,8 +12,9 @@ post '/users' do
 
   @user = User.new(params)
 
-  if !(params[:password] != password_conf)
+  if (params[:password] != password_conf)
     @error = "Password and password confirmation must match"
+    erb :"users/new"
   else
     if @user.save
       redirect '/'

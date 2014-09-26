@@ -29,7 +29,7 @@ get '/surveys/new' do
 end
 
 get '/surveys/:id' do
-  # @survey = Survey.find_by_id(params[:id])
+  @survey = Survey.find_by_id(params[:id])
   erb :"surveys/show"
 end
 

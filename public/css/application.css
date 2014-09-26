@@ -1,0 +1,39 @@
+h1, h4 {
+  text-align: center;
+}
+h1 {
+  margin-bottom: 30px;
+}
+#landing-title {
+  font-size: 4em;
+}
+.jumbotron {
+  margin: 20px auto;
+  max-width:500px;
+}
+.login-register {
+  max-width:400px;
+  text-align: center;
+  margin: auto;
+}
+.login-register a, .login-register input[type=submit] {
+  margin-top: 20px;
+}
+#logo {
+  width:30%;
+  display:block;
+  margin:auto;
+}
+input {
+  margin-top: 10px;
+}
+#all-surveys {
+  max-width: 400px;
+  margin:20px auto;
+  text-align: center;
+}
+.wrap-center {
+  display:block;
+  text-align: center;
+  margin-top: 15px;
+}

@@ -1,10 +1,14 @@
 <h1>Registration</h1>
 
-<form action='/users' method='post'>
-  <input type='text' name='username' placeholder='username'>
-  <input type='password' name='password' placeholder='password'>
-  <input type='password' name='password_conf' placeholder='confirm password'>
-  <input type='submit' value='register'>
-</form>
+<div class='jumbotron'>
+  <% if @error %>
+    <p class="alert alert-danger"><%= @error %></p>
+  <% end %>
+  <form action='/users' method='post' class='login-register'>
+    <input class='form-control' type='text' name='username' placeholder='username' value="<%= @user.username %>">
+    <input class='form-control' type='password' name='password' placeholder='password'>
+    <input class='form-control' type='password' name='password_conf' placeholder='confirm password'>
+    <input class='btn btn-primary btn-lg' type='submit' value='register'>
+  </form>
+</div>
 
-<%= @error %>
