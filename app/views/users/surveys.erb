@@ -1,9 +1,6 @@
-<h1>All surveys</h1>
+<h1><%= @user.username%>'s surveys</h1>
 
 
 <div class='wrap-center'><a href='/surveys/new' class='btn btn-success center'><span class='glyphicon glyphicon-plus'></sdpan> create a survey</a></div>
 
-
 <%= erb :_list_surveys, locals: {surveys: @surveys } %>
-
-

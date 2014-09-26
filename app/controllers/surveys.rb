@@ -7,24 +7,30 @@ post '/surveys' do
   survey_title = params[:title]
   all_questions = params[:questions]
 
-  puts survey_title
+  survey = Survey.create(title: params[:title], creator_id: current_user.id)
 
-  all_questions.each do |key, value|
-    question = value[:question]
-    all_options = value[:options]
+  all_questions.each_value do |value|
+    question_text = value[:question]
+    all_choices = value[:options]
 
-    puts "QUESTION #{question}"
+    question = Question.create(content: question_text, survey_id: survey.id)
 
-    all_options.each do |key, value|
-      puts "OPTION #{value}"
+    all_choices.each_value do |value|
+      Choice.create(content: value, question_id: question.id)
     end
   end
 
-  redirect "/users/:id/surveys"
+  redirect "/users/#{current_user.id}/surveys"
 end
 
 get '/surveys/new' do
   erb :"surveys/new"
+end
+
+get '/users/:id/surveys' do
+  @user = current_user
+  @surveys = Survey.where(creator_id: current_user.id)
+  erb :"users/surveys"
 end
 
 get '/surveys/:id' do
@@ -37,7 +43,6 @@ get '/users/:user_id/surveys/:survey_id' do
   @survey = Survey.find_by_id(params[:survey_id])
   erb :"surveys/questions/index"
 end
-
 
 post '/surveys/:id' do
   respondent_id = nil #change to current_user.id on git merge
