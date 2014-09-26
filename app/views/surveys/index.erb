@@ -1,14 +1,13 @@
 <h1>All surveys</h1>
 
 
+<div class='wrap-center'><a href='/surveys/new' class='btn btn-success center'><span class='glyphicon glyphicon-plus'></span> create a survey</a></div>
 
-<% @surveys.each do |survey| %>
-<a href="/surveys/<%= survey.id %>"><%= survey.title %></a>
-<% end %>
 
-<br><br>
 
-<a href='/surveys/new'>create a survey</a>
-<br><br>
+<ul class="list-group" id='all-surveys'>
+  <% @surveys.each do |survey| %>
+    <li class="list-group-item"><a href="/surveys/<%= survey.id %>"><%= survey.title %></a></li>
+  <% end %>
+</ul>
 
-fill me in at surveys/index
