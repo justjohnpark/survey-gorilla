@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_many :created_surveys, foreign_key: :creator_id, class_name: "Survey"
   has_many :questions, through: :responses
   has_many :selections, through: :responses, source: :choice
+  validates :username, presence: true, uniqueness: true
+  validates :hashed_password, presence: true
 
   def password
     self.hashed_password
@@ -11,7 +13,7 @@ class User < ActiveRecord::Base
 
   def password=(new_password)
     if new_password.length > 0
-      hashed_password = BCrypt::Password.create(new_password)
+      self.hashed_password = BCrypt::Password.create(new_password)
     end
   end
 
@@ -20,6 +22,4 @@ class User < ActiveRecord::Base
   end
 
 
-  validates :username, presence: true, uniqueness: true
-  validates :hashed_password, presence: true
 end

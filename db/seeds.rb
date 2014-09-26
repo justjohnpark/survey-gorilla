@@ -1,5 +1,11 @@
+User.delete_all
+Survey.delete_all
+Question.delete_all
+Choice.delete_all
+Response.delete_all
+
 User.create(username: "TromboneMan89", password: "ilovebrass")
-User.create(username: "inoda", password: "stylin")
+User.create!(username: "inoda", password: "stylin")
 
 Survey.create(title: "Horns", creator_id: 1)
 
