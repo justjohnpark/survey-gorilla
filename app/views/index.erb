@@ -1,8 +1,12 @@
-<h1>Serve, eh?</h1>
+<h1 id='landing-title'>Serve-A-Gorilla</h1>
+<h4>No gorillas were harmed in the making of this app.</h4>
+<img id="logo" src='plate-303475_640.jpg'>
 
-<form action='/login' method='post'>
-  <input type='text' name='username' placeholder='username'>
-  <input type='password' name='password' placeholder='password'>
-  <input type='submit' value='login'>
-  <a href='/users/new'>register</a>
-</form>
+<div class='jumbotron'>
+  <form action='/login' method='post' class='login-register'>
+    <input class='form-control' type='text' name='username' placeholder='username'>
+    <input class='form-control' type='password' name='password' placeholder='password'>
+    <input class='btn btn-primary btn-lg' type='submit' value='login'>
+    <a class='btn btn-info' href='/users/new'>register</a>
+  </form>
+</div>
