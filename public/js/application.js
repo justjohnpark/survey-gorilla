@@ -3,7 +3,7 @@ $(document).ready(function() {
     event.preventDefault();
     var question_index = lastQuestionIndex();
     var option_index = lastOptionIndex($(this));
-    $( buildOption(option_index, question_index) ).insertBefore( $(this).last() )
+    $( buildOption(option_index, question_index) ).insertBefore( $(this).parent().last() )
   })
   $("#new-question").click(function() {
     event.preventDefault();
@@ -15,23 +15,25 @@ $(document).ready(function() {
     if ( $("#added-questions li:last").index() === 0 ) {
       return null
     } else {
-      $( $(this).parent() ).remove();
+      $( $(this).parent().parent() ).remove();
     }
   })
 });
 
 function buildQuestion(index) {
-  return "<li> \
-            <input name='questions[" + index + "][question]' placeholder='question'> \
-            <input class='option' name='questions[" + index + "][options][0]' placeholder='option'> \
-            <input class='option' name='questions[" + index + "][options][1]' placeholder='option'> \
-            <button class='add-option'>add option</button> \
-            <button class='delete-question'>delete question</button> \
+  return "<li class='pad'> \
+            <input class='form-control' name='questions[" + index + "][question]' placeholder='question'> \
+            <input class='form-control unwide' name='questions[" + index + "][options][0]' placeholder='option'> \
+            <input class='form-control unwide' name='questions[" + index + "][options][1]' placeholder='option'> \
+            <div class='wrap-center'> \
+              <button class='add-option btn btn-success'>add option</button> \
+              <button class='delete-question btn btn-danger'>delete question</button> \
+            </div> \
           </li>"
 }
 
 function buildOption(option_index, question_index) {
-  return "<input class='option' name='questions[" + question_index + "][options][" + option_index +"]' placeholder='option'>"
+  return "<input class='form-control unwide' name='questions[" + question_index + "][options][" + option_index +"]' placeholder='option'>"
 }
 
 function lastQuestionIndex() {
