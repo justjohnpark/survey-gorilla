@@ -1,32 +1,13 @@
 <h1>You're taking a survey</h1>
 <br>
 
+<form action="/surveys/<%= @survey.id %>" method="post">
 <% @survey.questions.each do |question| %>
   <h4>Question: <%= question.content %></h4>
   <% question.choices.each do |choice| %>
-    <form action="/surveys/take/<%= @survey.id %>" method="post">
-      <input type="radio" name="response[<%=choice.content%>]" value="<%=choice.content%>"><%= choice.content %><br>
-      <% if choice.last == true %>
-        <input type="submit" value="Submit">
-      <% end %>
-      <br>
+    <input type="radio" name="response[<%=question.id%>]" value="<%=choice.id%>"><%= choice.content %><br>
     <% end %>
 <% end %>
+<input type="submit" value="Submit">
+</form>
 
-<!-- <h4>Question: What's the capital of the United States?</h4>
-<form action="/john" method="post">
-  <input type="radio" name="capital" value="Washington DC">Washington DC<br>
-  <input type="radio" name="capital" value="New York City">New York City<br>
-  <input type="radio" name="capital" value="Los Angeles">Los Angeles<br>
-
-<h4>Question: How many countries are in the world today?</h4>
-  <input type="radio" name="country" value="176">176<br>
-  <input type="radio" name="country" value="196">196<br>
-  <input type="radio" name="country" value="214">214<br>
-  <input type="radio" name="country" value="203">203<br>
-
-<h4>Question: What are you?</h4>
-  <input type="radio" name="sex" value="male">male<br>
-  <input type="radio" name="sex" value="female">female<br>
-  <input type="submit" value="Submit">
-</form> -->
