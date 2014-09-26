@@ -25,9 +25,13 @@ post '/users' do
 end
 
 post '/login' do
+  puts params
   user = User.find_by_username(params[:username])
   if user && user.authenticate(params[:password])
+    puts "IM HERER"
     redirect '/surveys'
+  else
+    redirect '/'
   end
 end
 
