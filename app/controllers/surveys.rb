@@ -4,6 +4,7 @@ get '/surveys' do
 end
 
 post '/surveys' do
+  puts params
   survey_title = params[:title]
   all_questions = params[:questions]
 

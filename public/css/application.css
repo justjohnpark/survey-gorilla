@@ -1,3 +1,6 @@
+body {
+  margin-bottom: 40px;
+}
 h1, h4 {
   text-align: center;
 }
@@ -36,4 +39,16 @@ input {
   display:block;
   text-align: center;
   margin-top: 15px;
+}
+.unwide {
+  max-width:400px;
+  text-align: center;
+  margin: 5px auto;
+}
+.pad {
+  margin-bottom: 40px;
+}
+#new-survey-title {
+  font-size: 2em;
+  height:auto;
 }

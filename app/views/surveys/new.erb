@@ -3,24 +3,26 @@
 <form action='/surveys' method='post' id="new-survey">
 
 
-  <input name='title' type='text' placeholder='title'>
+  <input class='form-control unwide' name='title' type='text' placeholder='survey title' id="new-survey-title">
 
   <br>
   <br>
 
-  <ul id="added-questions">
-    <li>
-      <input name='questions[0][question]' placeholder='question'>
-      <input class='option' name='questions[0][options][0]' placeholder='option'>
-      <input class='option' name='questions[0][options][1]' placeholder='option'>
-      <button class='add-option'>add option</button>
-      <button class='delete-question'>delete question</button>
+  <ul id="added-questions" class='list-group'>
+    <li class='pad'>
+      <input class='form-control' name='questions[0][question]' placeholder='question'>
+      <input class='form-control unwide' name='questions[0][options][0]' placeholder='option'>
+      <input class='form-control unwide' name='questions[0][options][1]' placeholder='option'>
+      <div class='wrap-center'>
+        <button class='add-option btn btn-success'><span class='glyphicon glyphicon-plus'></span> add option</button>
+        <button class='delete-question btn btn-danger'><span class='glyphicon glyphicon-minus'></span> delete question</button>
+      </div>
     </li>
   </ul>
 
-  <button id="new-question">add question</button>
+  <div class='wrap-center'><button id="new-question" class='btn btn-success'><span class='glyphicon glyphicon-plus'></span> add question</button></div>
 
   <br>
-  <input type='submit'>
+  <div class='wrap-center'><input type='submit' class='btn btn-primary btn-lg' value="Create survey"></div>
 </form>
 
