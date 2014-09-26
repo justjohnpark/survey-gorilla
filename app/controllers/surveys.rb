@@ -23,11 +23,11 @@ post '/surveys' do
   redirect "/users/:id/surveys"
 end
 
-get '/john' do
+get '/surveys/take/:id' do
   erb :"surveys/questions/index"
 end
 
-post '/john' do
+post '/surveys/take/:id' do
   puts params
 end
 
@@ -36,7 +36,7 @@ get '/surveys/new' do
 end
 
 get '/surveys/:id' do
-  # @survey = Survey.find_by_id(params[:id])
+  @survey = Survey.find_by_id(params[:id])
   erb :"surveys/show"
 end
 

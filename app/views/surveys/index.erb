@@ -1,7 +1,14 @@
 <h1>All surveys</h1>
 
-<a href='/surveys/new'>create a survey</a>
 
-<br>
+
+<% @surveys.each do |survey| %>
+<a href="/surveys/<%= survey.id %>"><%= survey.title %></a>
+<% end %>
+
+<br><br>
+
+<a href='/surveys/new'>create a survey</a>
+<br><br>
 
 fill me in at surveys/index

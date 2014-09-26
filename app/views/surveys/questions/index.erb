@@ -1,7 +1,19 @@
 <h1>You're taking a survey</h1>
 <br>
 
-<h4>Question: What's the capital of the United States?</h4>
+<% @survey.questions.each do |question| %>
+  <h4>Question: <%= question.content %></h4>
+  <% question.choices.each do |choice| %>
+    <form action="/surveys/take/<%= @survey.id %>" method="post">
+      <input type="radio" name="response[<%=choice.content%>]" value="<%=choice.content%>"><%= choice.content %><br>
+      <% if choice.last == true %>
+        <input type="submit" value="Submit">
+      <% end %>
+      <br>
+    <% end %>
+<% end %>
+
+<!-- <h4>Question: What's the capital of the United States?</h4>
 <form action="/john" method="post">
   <input type="radio" name="capital" value="Washington DC">Washington DC<br>
   <input type="radio" name="capital" value="New York City">New York City<br>
@@ -17,4 +29,4 @@
   <input type="radio" name="sex" value="male">male<br>
   <input type="radio" name="sex" value="female">female<br>
   <input type="submit" value="Submit">
-</form>
+</form> -->
