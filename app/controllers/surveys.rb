@@ -28,6 +28,12 @@ get '/surveys/new' do
   erb :"surveys/new"
 end
 
+get '/users/:id/surveys' do
+  @user = current_user
+  @surveys = Survey.where(creator_id: current_user.id)
+  erb :"users/surveys"
+end
+
 get '/surveys/:id' do
   @survey = Survey.find_by_id(params[:id])
   erb :"surveys/show"
