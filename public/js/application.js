@@ -29,6 +29,20 @@ $(document).ready(function() {
       $("#new-survey input[type=submit]").parent().prepend("<p class='alert alert-danger unwide'>All fields must be filled out.</p>");
     }
   })
+  $(".take-survey").on("submit", function(e) {
+    var answered_count = 0;
+    var question_count = $(".option").length;
+    $(".take-survey :input").each(function() {
+      var input = $(this);
+      if ($(input).is(':checked')) {
+        answered_count += 1
+      };
+    });
+    if (answered_count < question_count) {
+      e.preventDefault();
+      $("#missing-answers").html("<p class = 'alert alert-danger unwide'>You missed something!</p>")
+    };
+  });
 });
 
 function buildQuestion(index) {
