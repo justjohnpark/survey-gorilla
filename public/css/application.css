@@ -40,6 +40,16 @@ input {
   text-align: center;
   margin-top: 15px;
 }
+
+#survey-results {
+  max-width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#survey-link {
+  text-align: center;
+}
 .unwide {
   max-width:400px;
   text-align: center;
