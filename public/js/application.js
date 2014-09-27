@@ -18,6 +18,17 @@ $(document).ready(function() {
       $( $(this).parent().parent() ).remove();
     }
   })
+
+  $("#new-survey input[type=submit]").click(function(event) {
+    event.preventDefault();
+    var isFilledOut = checkIfFormIsFilledOut("#new-survey");
+    if (isFilledOut) {
+      $("#new-survey").submit();
+    } else {
+      $(".alert").remove();
+      $("#new-survey input[type=submit]").parent().prepend("<p class='alert alert-danger unwide'>All fields must be filled out.</p>");
+    }
+  })
 });
 
 function buildQuestion(index) {
@@ -42,5 +53,18 @@ function lastQuestionIndex() {
 
 function lastOptionIndex(button) {
   return button.prev().index()
+}
+
+function checkIfFormIsFilledOut(selector) {
+  var isFilledOut = true;
+
+  $( selector + " input" ).each(function() {
+    var input = $(this).val();
+    if (!input.length) {
+      isFilledOut = false;
+    }
+  });
+
+  return isFilledOut;
 }
 
