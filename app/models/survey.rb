@@ -11,6 +11,10 @@ class Survey < ActiveRecord::Base
     survey = Survey.create(title: params[:title], creator_id: params[:creator_id])
     Question.create_questions(all_questions, survey)  
   end
+
+  def self.by_popularity(surveys)
+    surveys.sort_by { |survey| survey.respondents.count }.reverse
+  end
 end
 
 

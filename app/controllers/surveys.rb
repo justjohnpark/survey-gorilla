@@ -1,9 +1,9 @@
 get '/surveys' do
   show_door
   if !current_user.taken_survey_ids.empty?
-    @surveys = Survey.where(["creator_id != ? and id not in (?)", current_user.id, current_user.taken_survey_ids])
+    @surveys = Survey.by_popularity(Survey.where(["creator_id != ? and id not in (?)", current_user.id, current_user.taken_survey_ids]))
   else
-    @surveys = Survey.where.not(creator_id: current_user.id)
+    @surveys = Survey.by_popularity(Survey.where.not(creator_id: current_user.id))
   end
   erb :"surveys/index"
 end
