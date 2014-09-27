@@ -1,0 +1,13 @@
+<p>
+<ul class="list-group" id='survey-results'>
+  <% @survey.questions.each do |question| %>
+    <li><%= question.content %></li>
+    <ul class="list-group" id='responses'>
+      <% question.choices.each do |choice| %>
+      <li><%=choice.content%></li>
+      <li><%=choice.responses.count%></li>
+      <% end %>
+    </ul>
+  <% end %>
+</ul>
+<p>
