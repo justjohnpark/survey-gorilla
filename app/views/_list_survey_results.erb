@@ -1,13 +1,24 @@
-<p>
-<ul class="list-group" id='survey-results'>
-  <% @survey.questions.each do |question| %>
-    <li><%= question.content %></li>
-    <ul class="list-group" id='responses'>
+<h1>Survey Statistics</h1>
+<div id='survey-link'>
+<a href='/users/id/surveys/id'>take this survey</a>
+</div>
+
+<h1 id:"survey-title"><%=@survey.title%></h1>
+
+<table class="table table-striped" id='survey-results'>
+ <% @survey.questions.each do |question| %>
+    <th colspan="3" class="info"><%= question.content %></th>
       <% question.choices.each do |choice| %>
-      <li><%=choice.content%></li>
-      <li><%=choice.responses.count%></li>
+      <tr>
+      <td><%=choice.content%></td>
+      <td><%=choice.responses.count%></td>
+      <td><%=(((choice.responses.count).to_f/(question.responses.count).to_f) * 100).round%>%</td>
+      </tr>
       <% end %>
-    </ul>
+      <tr>
+      <td><strong>Total:</strong></td>
+      <td colspan="2"><strong><%=question.responses.count%></strong></td>
+      </tr>
   <% end %>
-</ul>
+</table>
 <p>
