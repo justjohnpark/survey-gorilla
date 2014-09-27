@@ -3,6 +3,11 @@ Survey.delete_all
 Question.delete_all
 Choice.delete_all
 Response.delete_all
+ActiveRecord::Base.connection.reset_pk_sequence!('users')
+ActiveRecord::Base.connection.reset_pk_sequence!('surveys')
+ActiveRecord::Base.connection.reset_pk_sequence!('questions')
+ActiveRecord::Base.connection.reset_pk_sequence!('choices')
+ActiveRecord::Base.connection.reset_pk_sequence!('responses')
 
 User.create(username: "TromboneMan89", password: "ilovebrass")
 User.create!(username: "inoda", password: "stylin")

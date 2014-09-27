@@ -62,3 +62,13 @@ input {
   font-size: 2em;
   height:auto;
 }
+.inline {
+  display: inline-block;
+}
+.question {
+  margin-top: 20px;
+}
+#missing-answers {
+  margin:50px;
+}
+

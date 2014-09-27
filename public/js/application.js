@@ -31,7 +31,7 @@ $(document).ready(function() {
   })
   $(".take-survey").on("submit", function(e) {
     var answered_count = 0;
-    var question_count = $(".option").length;
+    var question_count = $(".question").length;
     $(".take-survey :input").each(function() {
       var input = $(this);
       if ($(input).is(':checked')) {

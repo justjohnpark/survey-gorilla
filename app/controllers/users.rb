@@ -3,12 +3,22 @@ get '/users/new' do
   erb :"users/new"
 end
 
+get '/users/:id/surveys' do
+  show_door
+  @surveys = current_user.created_surveys
+  erb :"users/surveys/index"
+end
+
+get '/users/:id/responses' do
+  show_door
+  @surveys = current_user.taken_surveys
+  erb :"users/responses/index"
+end
+
 post '/users' do
   password_conf = params[:password_conf]
   params.delete("password_conf")
-
   @user = User.new(params)
-
   if (params[:password] != password_conf)
     @error = "Password and password confirmation must match"
     erb :"users/new"

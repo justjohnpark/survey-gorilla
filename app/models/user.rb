@@ -21,5 +21,19 @@ class User < ActiveRecord::Base
     BCrypt::Password.new(self.password) == password_input
   end
 
+  def created_surveys
+    Survey.where(creator_id: self.id).order("created_at DESC")
+  end
 
+  def taken_surveys 
+    surveys = []
+    Response.where(respondent_id: self.id).order("created_at DESC").each do |response| 
+      surveys << response.survey
+    end
+    surveys.uniq    
+  end
+
+  def find_responses_for(survey)
+    Response.where(respondent: self, survey: survey)
+  end
 end
