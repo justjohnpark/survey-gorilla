@@ -1,8 +1,6 @@
 <h1>Showing survey stats</h1>
 
-<a href='/users/id/surveys/<%=@survey.id%>'>take this survey</a>
-
-CHANGE USER ID
+<a href='/users/<%=current_user.id%>/surveys/<%=@survey.id%>'>take this survey</a>
 
 <br>
 fill me in @ surveys/show
