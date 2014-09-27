@@ -3,4 +3,6 @@
 <a href='/users/id/surveys/id'>take this survey</a>
 
 <br>
-fill me in @ surveys/show
+<h3><%=@survey.title%></h3>
+
+<%= erb :_list_survey_results, locals: {survey: @survey} %>
