@@ -1,13 +1,14 @@
 <h1>You're taking a survey</h1>
 <br>
 
-<form action="/surveys/<%= @survey.id %>" method="post">
+<form class="take-survey" action="/surveys/<%= @survey.id %>" method="post">
 <% @survey.questions.each do |question| %>
-  <h4>Question: <%= question.content %></h4>
+  <h4 class = "option">Question: <%= question.content %></h4>
   <% question.choices.each do |choice| %>
     <input type="radio" name="response[<%=question.id%>]" value="<%=choice.id%>"><%= choice.content %><br>
     <% end %>
 <% end %>
+<span id = "missing-answers"></span>
 <input type="submit" value="Submit">
 </form>
 
