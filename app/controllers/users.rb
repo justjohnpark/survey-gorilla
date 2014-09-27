@@ -3,9 +3,6 @@ get '/users/new' do
   erb :"users/new"
 end
 
-
-
-
 post '/users' do
   password_conf = params[:password_conf]
   params.delete("password_conf")
@@ -26,7 +23,6 @@ post '/users' do
 end
 
 post '/login' do
-  puts params
   user = User.find_by_username(params[:username])
   if user && user.authenticate(params[:password])
     session[:user_id] = user.id
