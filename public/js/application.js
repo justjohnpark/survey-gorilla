@@ -3,13 +3,21 @@ $(document).ready(function() {
     event.preventDefault();
     var question_index = lastQuestionIndex();
     var option_index = lastOptionIndex($(this));
-    $( buildOption(option_index, question_index) ).insertBefore( $(this).parent().last() )
-  })
+    $( buildOption(option_index + 1, question_index) ).insertAfter( $(this).parent().prev().children().last() )
+  });
+  $("#added-questions").on("click", ".delete-option", function() {
+    event.preventDefault();
+    if ( !($(this).parent().children().last().index() <= 5) ) {
+      $(this).prev().remove();
+      $(this).next().remove();
+      $(this).remove();
+    }
+  });
   $("#new-question").click(function() {
     event.preventDefault();
     var question_index = lastQuestionIndex();
     $("#added-questions").append( buildQuestion(question_index + 1) )
-  })
+  });
   $("#added-questions").on("click", ".delete-question", function() {
     event.preventDefault();
     if ( $("#added-questions li:last").index() === 0 ) {
@@ -17,8 +25,7 @@ $(document).ready(function() {
     } else {
       $( $(this).parent().parent() ).remove();
     }
-  })
-
+  });
   $("#new-survey input[type=submit]").click(function(event) {
     event.preventDefault();
     var isFilledOut = checkIfFormIsFilledOut("#new-survey");
@@ -28,7 +35,9 @@ $(document).ready(function() {
       $(".alert").remove();
       $("#new-survey input[type=submit]").parent().prepend("<p class='alert alert-danger unwide'>All fields must be filled out.</p>");
     }
-  })
+  });
+
+
   $(".take-survey").on("submit", function(e) {
     var answered_count = 0;
     var question_count = $(".question").length;
@@ -43,28 +52,24 @@ $(document).ready(function() {
       $("#missing-answers").html("<p class = 'alert alert-danger unwide'>You missed something!</p>")
     };
   });
-
-
-  $("#filter").click(function() {
-    event.preventDefault();
-
-  });
 });
 
 function buildQuestion(index) {
-  return "<li class='pad'> \
+  return  "<li class='pad'> \
             <input class='form-control' name='questions[" + index + "][question]' placeholder='question'> \
-            <input class='form-control unwide' name='questions[" + index + "][options][0]' placeholder='option'> \
-            <input class='form-control unwide' name='questions[" + index + "][options][1]' placeholder='option'> \
             <div class='wrap-center'> \
-              <button class='add-option btn btn-success'>add option</button> \
-              <button class='delete-question btn btn-danger'>delete question</button> \
+              <input class='form-control unwide inline' name='questions[" + index + "][options][0]' placeholder='option'> <button class='delete-option btn btn-danger btn-sm'>delete option</button><br> \
+              <input class='form-control unwide inline' name='questions[" + index + "][options][1]' placeholder='option'> <button class='delete-option btn btn-danger btn-sm'>delete option</button><br> \
+            </div> \
+            <div class='wrap-center'> \
+              <button class='add-option btn btn-success'><span class='glyphicon glyphicon-plus'></span> add option</button> \
+              <button class='delete-question btn btn-danger'><span class='glyphicon glyphicon-minus'></span> delete question</button> \
             </div> \
           </li>"
 }
 
 function buildOption(option_index, question_index) {
-  return "<input class='form-control unwide' name='questions[" + question_index + "][options][" + option_index +"]' placeholder='option'>"
+  return "<input class='form-control unwide inline' name='questions[" + question_index + "][options][" + option_index + "]' placeholder='option'> <button class='delete-option btn btn-danger btn-sm'>delete option</button><br>"
 }
 
 function lastQuestionIndex() {
@@ -72,7 +77,7 @@ function lastQuestionIndex() {
 }
 
 function lastOptionIndex(button) {
-  return button.prev().index()
+  return parseInt(button.parent().prev().children().filter("input:last").attr("name").split('[')[3]) 
 }
 
 function checkIfFormIsFilledOut(selector) {

@@ -11,8 +11,12 @@
   <ul id="added-questions" class='list-group'>
     <li class='pad'>
       <input class='form-control' name='questions[0][question]' placeholder='question'>
-      <input class='form-control unwide' name='questions[0][options][0]' placeholder='option'>
-      <input class='form-control unwide' name='questions[0][options][1]' placeholder='option'>
+
+      <div class='wrap-center'>
+        <input class='form-control unwide inline' name='questions[0][options][0]' placeholder='option'> <button class='delete-option btn btn-danger btn-sm'>delete option</button><br>
+        <input class='form-control unwide inline' name='questions[0][options][1]' placeholder='option'> <button class='delete-option btn btn-danger btn-sm'>delete option</button><br>
+      </div>
+
       <div class='wrap-center'>
         <button class='add-option btn btn-success'><span class='glyphicon glyphicon-plus'></span> add option</button>
         <button class='delete-question btn btn-danger'><span class='glyphicon glyphicon-minus'></span> delete question</button>
