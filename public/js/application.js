@@ -43,6 +43,12 @@ $(document).ready(function() {
       $("#missing-answers").html("<p class = 'alert alert-danger unwide'>You missed something!</p>")
     };
   });
+
+
+  $("#filter").click(function() {
+    event.preventDefault();
+
+  });
 });
 
 function buildQuestion(index) {

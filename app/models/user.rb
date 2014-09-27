@@ -33,6 +33,11 @@ class User < ActiveRecord::Base
     surveys.uniq    
   end
 
+  def taken_survey_ids
+    ids = self.taken_surveys.map { |survey| survey.id }
+    ids
+  end
+
   def find_responses_for(survey)
     Response.where(respondent: self, survey: survey)
   end

@@ -1,6 +1,10 @@
 get '/surveys' do
   show_door
-  @surveys = Survey.all.order("created_at DESC")
+  if !current_user.taken_survey_ids.empty?
+    @surveys = Survey.where(["creator_id != ? and id not in (?)", current_user.id, current_user.taken_survey_ids])
+  else
+    @surveys = Survey.where.not(creator_id: current_user.id)
+  end
   erb :"surveys/index"
 end
 
