@@ -1,6 +1,6 @@
 <h1>Survey Statistics</h1>
 <div id='survey-link'>
-<a href='/users/id/surveys/id'>take this survey</a>
+<a href="/users/<%=current_user.id%>/surveys/<%=@survey.id%>">take this survey</a>
 </div>
 
 <h1 id:"survey-title"><%=@survey.title%></h1>

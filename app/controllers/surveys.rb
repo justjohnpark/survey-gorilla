@@ -40,7 +40,6 @@ end
 get '/surveys/:id' do
   show_door
   @survey = Survey.find_by_id(params[:id])
-  # @user = User.find_by(id: session[:user_id])
   erb :"surveys/show"
 end
 
