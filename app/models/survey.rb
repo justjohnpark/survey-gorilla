@@ -15,6 +15,19 @@ class Survey < ActiveRecord::Base
   def self.by_popularity(surveys)
     surveys.sort_by { |survey| survey.respondents.count }.reverse
   end
+
+  def build_stats
+    response_object = {}
+    self.questions.each do |question|
+      choices = {}
+      question.choices.each do |choice|
+        choices[choice.content] = choice.responses.count
+      end
+      response_object[question.content] = choices
+    end    
+    
+    response_object
+  end  
 end
 
 

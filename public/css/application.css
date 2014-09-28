@@ -71,4 +71,13 @@ input {
 #missing-answers {
   margin:50px;
 }
-
+table {
+  width:100%;
+}
+#survey-id {
+  display:none;
+}
+.stats {
+  margin: 100px auto 0 auto;
+  max-width: 700px;
+}

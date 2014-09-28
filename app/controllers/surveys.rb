@@ -33,12 +33,17 @@ get '/users/:user_id/surveys/:survey_id' do
   erb :"surveys/questions/index"
 end
 
+post '/surveys/results' do 
+  survey = Survey.find_by_id(params[:id])
+  response_object = survey.build_stats
+  content_type :json
+  response_object.to_json
+end
+
 post '/surveys/:id' do
   show_door
   params[:respondent_id] = current_user.id
   Response.record_responses(params)
   redirect "/surveys/#{params[:id]}"
 end
-
-
 
