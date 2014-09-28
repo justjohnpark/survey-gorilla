@@ -2,7 +2,7 @@
   <% surveys.each do |survey| %>
     <a href="/surveys/<%= survey.id %>" class='survey'>
       <li class="list-group-item">
-        <%= survey.title %>
+        <%= survey.title %> (<%= survey.respondents.count %> respondents)
         <br><br>
         By <%= survey.creator.username %>
       </li>

@@ -1,11 +1,16 @@
 get '/surveys' do
-  show_door
-  if !current_user.taken_survey_ids.empty?
-    @surveys = Survey.by_popularity(Survey.where(["creator_id != ? and id not in (?)", current_user.id, current_user.taken_survey_ids]))
+  # show_door
+
+  if logged_in?
+    if !current_user.taken_survey_ids.empty?
+      @surveys = Survey.by_popularity(Survey.where(["creator_id != ? and id not in (?)", current_user.id, current_user.taken_survey_ids]))
+    else
+      @surveys = Survey.by_popularity(Survey.where.not(creator_id: current_user.id))
+    end
   else
-    @surveys = Survey.by_popularity(Survey.where.not(creator_id: current_user.id))
+    @surveys = Survey.by_popularity(Survey.all)
   end
-  erb :"surveys/index"
+    erb :"surveys/index"
 end
 
 post '/surveys' do
@@ -20,9 +25,11 @@ get '/surveys/new' do
 end
 
 get '/surveys/:id' do
-  show_door
+  # show_door
   @survey = Survey.find_by_id(params[:id])
-  @user_responses = current_user.find_responses_for @survey
+  if logged_in?
+    @user_responses = current_user.find_responses_for @survey
+  end
   erb :"surveys/show"
 end
 

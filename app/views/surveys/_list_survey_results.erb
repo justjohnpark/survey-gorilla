@@ -2,7 +2,11 @@
 
 <% if !@survey.respondents.include? current_user %>
   <div id='survey-link'>
-    <a class='btn btn-primary btn-lg' href="/users/<%=current_user.id%>/surveys/<%=@survey.id%>">take this survey</a>
+    <% if logged_in? %>
+      <a class='btn btn-primary btn-lg' href="/users/<%=current_user.id%>/surveys/<%=@survey.id%>">take this survey</a>
+    <% else %>
+      <a class='btn btn-primary btn-lg' id="modal" href="/surveys/<%= @survey.id %>">take this survey</a>    
+    <% end %>
   </div>
 <% end %>
 
@@ -18,3 +22,5 @@
 <script src="http://code.highcharts.com/highcharts.js"></script>
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
 <script src='/js/chart.js'></script>
+<script src='/js/lib/jquery.simplemodal.js'></script> <!-- SOURCE: http://www.ericmmartin.com/projects/simplemodal/ -->
+<script src="/js/modal.js"></script>

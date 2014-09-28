@@ -4,7 +4,7 @@ get '/users/new' do
 end
 
 get '/users/:id/surveys' do
-  show_door
+  # show_door
   @user = User.find_by_id(params[:id])
   @surveys = @user.created_surveys
   erb :"users/surveys/index"
@@ -37,7 +37,12 @@ post '/login' do
   user = User.find_by_username(params[:username])
   if user && user.authenticate(params[:password])
     session[:user_id] = user.id
-    redirect '/surveys'
+    if params[:current_page]
+      redirect params[:current_page]
+    else
+      redirect '/surveys'
+    end
+
   else
     redirect '/'
   end
