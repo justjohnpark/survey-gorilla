@@ -1,5 +1,11 @@
 <ul class="list-group" id='all-surveys'>
   <% surveys.each do |survey| %>
-    <li class="list-group-item"><a href="/surveys/<%= survey.id %>"><%= survey.title %></a></li>
+    <a href="/surveys/<%= survey.id %>" class='survey'>
+      <li class="list-group-item">
+        <%= survey.title %>
+        <br><br>
+        By <%= survey.creator.username %>
+      </li>
+    </a>
   <% end %>
 </ul>

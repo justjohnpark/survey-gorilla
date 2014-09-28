@@ -1,13 +1,14 @@
-<h1>Survey Statistics</h1>
+<h1 id:"survey-title"><%= @survey.title %> (<%= @survey.respondents.uniq.count %> respondents)</h1>
 
 <% if !@survey.respondents.include? current_user %>
   <div id='survey-link'>
-    <a href="/users/<%=current_user.id%>/surveys/<%=@survey.id%>">take this survey</a>
+    <a class='btn btn-primary btn-lg' href="/users/<%=current_user.id%>/surveys/<%=@survey.id%>">take this survey</a>
   </div>
 <% end %>
 
-<h1 id:"survey-title"><%= @survey.title %></h1>
-<h4>(<%= @survey.respondents.uniq.count %> respondents)</h4>
+<% if !(@survey.creator == current_user) %>
+  <div class='wrap-center'><a class='btn btn-primary btn-lg' href="/users/<%= @survey.creator.id %>/surveys">more from <%= @survey.creator.username %></a></div>
+<% end %>
 
 <% if @survey.respondents.count > 0 %>
   <span id="survey-id"><%= @survey.id %></span>

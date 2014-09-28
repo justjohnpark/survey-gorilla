@@ -81,3 +81,19 @@ table {
   margin: 100px auto 0 auto;
   max-width: 700px;
 }
+.list-group-item {
+  color:white;
+  text-decoration: none;
+  background-color: #6B8FB2;
+}
+.list-group-item:hover {
+  background-color: #5CB8E6
+}
+.survey .list-group-item {
+  margin-bottom: 10px;
+  padding:30px;
+}
+.survey:hover {
+  text-decoration: none;
+}
+

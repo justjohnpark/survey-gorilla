@@ -1,6 +1,11 @@
-<h1><%= current_user.username %>'s Surveys</h1>
+<h1><%= @user.username %>'s Surveys</h1>
 
-
-<div class='wrap-center'><a href='/surveys/new' class='btn btn-success center'><span class='glyphicon glyphicon-plus'></span> create a survey</a></div>
+<% if @user == current_user %>
+  <div class='wrap-center'>
+    <a href='/surveys/new' class='btn btn-success center'>
+      <span class='glyphicon glyphicon-plus'></span> create a survey
+    </a>
+  </div>
+<% end %>
 
 <%= erb :"surveys/_list_surveys", locals: {surveys: @surveys } %>

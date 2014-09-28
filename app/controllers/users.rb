@@ -5,7 +5,8 @@ end
 
 get '/users/:id/surveys' do
   show_door
-  @surveys = current_user.created_surveys
+  @user = User.find_by_id(params[:id])
+  @surveys = @user.created_surveys
   erb :"users/surveys/index"
 end
 
