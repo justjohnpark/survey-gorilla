@@ -1,7 +1,7 @@
 #Serve-A-Gorilla
 After creating an account, users can create or take any survey. 
 
-Creating a survey requires the user to include at least one question. A question must have at least two options. More questions and options can be added. A created survey is visible to all other users. Once a survey is created, it cannot be edited, but it can be deleted.
+Creating a survey requires the user to include at least one question. A question must have at least two options. More questions and options can be added. A created survey is visible to all other users. Once a survey is created, it cannot be edited.
 
 Taking a survey requires the user to answer all questions. 
 
