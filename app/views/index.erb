@@ -6,6 +6,9 @@
 
 <div class='jumbotron'>
   <form action='/login' method='post' class='login-register'>
+    <% if @errors %>
+    <p class="alert alert-danger"><%=@errors%></p>
+    <% end %>
     <input class='form-control' type='text' name='username' placeholder='username'>
     <input class='form-control' type='password' name='password' placeholder='password'>
     <input class='btn btn-primary btn-lg' type='submit' value='login'>

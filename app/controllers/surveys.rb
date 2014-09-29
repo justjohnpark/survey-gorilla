@@ -10,7 +10,7 @@ get '/surveys' do
   else
     @surveys = Survey.by_popularity(Survey.all)
   end
-    erb :"surveys/index"
+  erb :"surveys/index"
 end
 
 post '/surveys' do
@@ -29,6 +29,7 @@ get '/surveys/:id' do
   @survey = Survey.find_by_id(params[:id])
   if logged_in?
     @user_responses = current_user.find_responses_for @survey
+
   end
   erb :"surveys/show"
 end
@@ -44,6 +45,7 @@ post '/surveys/results' do
   survey = Survey.find_by_id(params[:id])
   response_object = survey.build_stats
   content_type :json
+  p response_object
   response_object.to_json
 end
 

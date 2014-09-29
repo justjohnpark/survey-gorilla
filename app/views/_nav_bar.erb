@@ -6,17 +6,27 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
+    <% if logged_in? %>
     <a href="/surveys" class="navbar-brand">Serve-a-Gorilla</a>
+    <% else %>
+    <a href="/" class="navbar-brand">Serve-a-Gorilla</a>
+    <% end %>
   </div>
   <div id="navbarCollapse" class="collapse navbar-collapse">
     <ul class="nav navbar-nav">
+      <% if logged_in? %>
       <li><a href="/surveys">New Surveys</a></li>
       <li><a href="/users/<%= current_user.id %>/surveys">My Surveys</a></li>
       <li><a href="/users/<%= current_user.id %>/responses">Taken Surveys</a></li>
+      <% end %>
     </ul>
       <ul class="nav navbar-nav navbar-right">
+      <% if logged_in? %>
         <li><a>Hi, <%= current_user.username %>!</a></li>
         <li><a href="/logout">Logout</a></li>
+        <% else %>
+        <li><a href="/users/new">Register</a></li>
+      <% end %>
       </ul>
   </div>
 </nav>
