@@ -25,7 +25,6 @@ class Survey < ActiveRecord::Base
       end
       response_object[question.content] = choices
     end    
-    
     response_object
   end  
 end

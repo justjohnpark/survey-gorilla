@@ -41,4 +41,15 @@ class User < ActiveRecord::Base
   def find_responses_for(survey)
     Response.where(respondent: self, survey: survey)
   end
+
+  def build_user_responses(survey)
+    responses = self.find_responses_for survey
+    response_object = {}
+      responses.each do |response|
+        question = Question.find(response.question_id)
+        choice = Choice.find(response.choice_id)
+        response_object[question.content] = choice.content
+      end
+    response_object
+  end  
 end
