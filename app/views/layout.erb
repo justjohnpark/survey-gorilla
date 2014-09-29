@@ -23,7 +23,7 @@
   <title>Serve-a-gorilla</title>
 </head>
 <body>
-  <% if logged_in? %>
+  <% unless @homepage %>
     <%= erb :'_nav_bar' %>
   <% end %>
   <div class='container'><%= yield %></div>

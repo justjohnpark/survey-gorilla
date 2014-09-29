@@ -42,9 +42,10 @@ post '/login' do
     else
       redirect '/surveys'
     end
-
   else
-    redirect '/'
+    @errors = "Try again!"
+    @homepage = true
+    erb :index
   end
 end
 

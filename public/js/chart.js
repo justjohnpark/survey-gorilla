@@ -7,22 +7,27 @@ $(document).ready(function() {
 
       $('#container').append("<div class='stats' id="+ index +"></div>")
 
-      var series = [];
+      var labels = [];
+      var data = []
       for (var choice in response[question]) {
-        series.push({ name: choice, 'data': [ response[question][choice] ] })
-      }
+        data.push(response[question][choice])
+        labels.push(choice)
+        }
 
       $("#" + index).highcharts({
         chart: {
-          type: 'column'
+          type: 'column',
+          backgroundColor: '#F0F5FF',
+          plotBorderWidth: 1
         },
         title: {
           text: question
         },
-        xAxis: {
-          labels: { enabled: false }
+          xAxis: {
+          categories: labels,
         },
         yAxis: {
+          allowDecimals: false,
           min: 0,
           title: {
             text: 'Votes'
@@ -42,7 +47,8 @@ $(document).ready(function() {
             borderWidth: 0
           }
         },
-        series: series
+        series: [{data: data,
+          showInLegend: false}]
       });
        // $("#" + index + " .highcharts-container").prepend("<input class='form-control'>")
       index += 1;
