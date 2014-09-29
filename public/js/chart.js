@@ -1,19 +1,15 @@
 $(document).ready(function() {
-
   var id = parseInt($('#survey-id').html())
   $.post('/surveys/results', { id: id }, function(response) {
     var index = 0;
     for (var question in response) {
-
       $('#container').append("<div class='stats' id="+ index +"></div>")
-
       var labels = [];
       var data = []
       for (var choice in response[question]) {
         data.push(response[question][choice])
         labels.push(choice)
-        }
-
+      }
       $("#" + index).highcharts({
         chart: {
           type: 'column',
@@ -23,7 +19,7 @@ $(document).ready(function() {
         title: {
           text: question
         },
-          xAxis: {
+        xAxis: {
           categories: labels,
         },
         yAxis: {
@@ -34,12 +30,7 @@ $(document).ready(function() {
           }
         },
         tooltip: {
-          headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-          pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-              '<td style="padding:0"><b>{point.y} vote(s)</b></td></tr>',
-          footerFormat: '</table>',
-          shared: true,
-          useHTML: true
+          enabled: false,
         },
         plotOptions: {
           column: {
@@ -49,11 +40,20 @@ $(document).ready(function() {
         },
         series: [{data: data,
           showInLegend: false}]
-      });
-       // $("#" + index + " .highcharts-container").prepend("<input class='form-control'>")
+        });
+      user_response(id, index, question)
       index += 1;
     }
   });
+  var user_response = function(id, index, question) {
+    $.post('/surveys/responses', { id: id }, function(user_response) {
+      if (user_response) {
+      $("#" + index).append("<span class = 'user_response'><h4>You answered: "+user_response[question]+" </h4>")
+      } else {
+        return null
+      };
+    })
+  };
 });
 
 

@@ -1,6 +1,5 @@
 get '/surveys' do
   # show_door
-
   if logged_in?
     if !current_user.taken_survey_ids.empty?
       @surveys = Survey.by_popularity(Survey.where(["creator_id != ? and id not in (?)", current_user.id, current_user.taken_survey_ids]))
@@ -45,8 +44,16 @@ post '/surveys/results' do
   survey = Survey.find_by_id(params[:id])
   response_object = survey.build_stats
   content_type :json
-  p response_object
   response_object.to_json
+end
+
+post '/surveys/responses' do
+  survey = Survey.find_by_id(params[:id])
+  unless current_user.find_responses_for(survey).empty?
+    response_object = current_user.build_user_responses survey
+    content_type :json
+    response_object.to_json
+  end
 end
 
 post '/surveys/:id' do
