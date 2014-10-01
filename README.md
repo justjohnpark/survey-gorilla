@@ -1,17 +1,21 @@
 #Serve-A-Gorilla
-After creating an account, users can create or take any survey. 
+[link to heroku app](http://serve-a-gorilla.herokuapp.com/)
+
+*Be conscious of what password you use! Although we don't require an email address to register (just a username), the app is not SSL secured*
+
+After creating an account, users can create or take any survey.
 
 Creating a survey requires the user to include at least one question. A question must have at least two options. More questions and options can be added. A created survey is visible to all other users. Once a survey is created, it cannot be edited.
 
-Taking a survey requires the user to answer all questions. 
+Taking a survey requires the user to answer all questions.
 
-A user can only take a survey once. The creator of a survey can take their own survey. User responses are stored and aggregated to form bar graphs for each question of a survey. 
+A user can only take a survey once. The creator of a survey can take their own survey. User responses are stored and aggregated to form bar graphs for each question of a survey.
 
-A user can easily navigate to a list surveys they have not created or already taken, ordered by the number of respondents. A user can easily navigate to a list of surveys they have created. A user can easily navigate to a list of surveys they have taken. 
+A user can easily navigate to a list surveys they have not created or already taken, ordered by the number of respondents. A user can easily navigate to a list of surveys they have created. A user can easily navigate to a list of surveys they have taken.
 
 A visitor can view the results of any survey, but will be prompted to login if they try to create or take a survey.
 
-Sinatra and Thin on the backend, Twitter Bootstrap on the frontend. 
+Sinatra and Thin on the backend, Twitter Bootstrap on the frontend.
 
 ###User Stories
 * as a user, I want to be able to login/register

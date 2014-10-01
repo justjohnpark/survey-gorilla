@@ -20,7 +20,6 @@ gem 'bcrypt'
 group :test do
   gem 'shoulda-matchers'
   gem 'rack-test'
-  gem 'rspec'
   gem 'capybara'
 end
 

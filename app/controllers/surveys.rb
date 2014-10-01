@@ -40,7 +40,7 @@ get '/users/:user_id/surveys/:survey_id' do
   erb :"surveys/questions/index"
 end
 
-post '/surveys/results' do 
+post '/surveys/results' do
   survey = Survey.find_by_id(params[:id])
   response_object = survey.build_stats
   content_type :json
